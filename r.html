@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Kamakshi!</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            color: white;
+            font-size: 3em;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .flower, .leaf {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+        }
+        .flower {
+            background: url('https://i.imgur.com/Oa8F0cH.png') no-repeat center;
+        }
+        .leaf {
+            background: url('https://i.imgur.com/6pZVQZP.png') no-repeat center;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes burst {
+            0% { transform: scale(0.5) translate(0, 0); opacity: 1; }
+            100% { transform: scale(1) translate(var(--x), var(--y)); opacity: 0; }
+        }
+        .button {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+        }
+        .quote {
+            font-size: 1.5em;
+            color: #fff;
+            margin-top: 20px;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday Kamakshi! 🎉🎂</h1>
+    <p class="quote">"You are the love that makes every moment magical. Happy Birthday, my love! ❤️"</p>
+    <button class="button" onclick="showPerfectQuote()">💖 click here kaamaaaaaa</button>
+    <button class="button" onclick="showUniqueQuote()">🌟 click here kaamaaaaaa</button>
+    <div class="message-box" id="message">
+        <p id="quote-text"></p>
+        <button class="button" onclick="hideMessage()">Close</button>
+    </div>
+    <script>
+        function createFlowers() {
+            for (let i = 0; i < 30; i++) {
+                let flower = document.createElement("div");
+                flower.className = "flower";
+                flower.style.left = Math.random() * window.innerWidth + "px";
+                flower.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
+                document.body.appendChild(flower);
+            }
+        }
+        function showPerfectQuote() {
+            showMessage("You are my sunshine, my happiness, my everything. Happy Birthday, my love! ❤️");
+            burstEffect();
+        }
+        function showUniqueQuote() {
+            showMessage("On this special day, I just want to remind you that you are loved beyond measure. Happy Birthday My Bitch, my heart! 💕");
+            burstEffect();
+        }
+        function showMessage(text) {
+            document.getElementById("quote-text").innerText = text;
+            document.getElementById("message").style.display = "block";
+        }
+        function hideMessage() {
+            document.getElementById("message").style.display = "none";
+        }
+        function burstEffect() {
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 2;
+            for (let i = 0; i < 20; i++) {
+                let element = document.createElement("div");
+                element.className = Math.random() > 0.5 ? "flower" : "leaf";
+                document.body.appendChild(element);
+                element.style.position = "absolute";
+                element.style.left = `${centerX}px`;
+                element.style.top = `${centerY}px`;
+                let angle = Math.random() * 2 * Math.PI;
+                let distance = Math.random() * 200 + 50;
+                element.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+                element.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+                element.style.animation = "burst 0.8s ease-out forwards";
+                setTimeout(() => element.remove(), 800);
+            }
+        }
+        createFlowers();
+    </script>
+</body>
+</html>
